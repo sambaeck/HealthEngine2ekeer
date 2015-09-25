@@ -10,12 +10,14 @@ public class Parameter {
     private final int minimumValue;
     private final int maximumValue;
     private final int offset;
+    private final double readValue;
 
-    public Parameter(Device device, int minimumValue, int maximumValue, int offset) {
+    public Parameter(Device device, int minimumValue, int maximumValue, int offset, double readValue) {
         this.device = device;
         this.minimumValue = minimumValue;
         this.maximumValue = maximumValue;
         this.offset = offset;
+        this.readValue = readValue;
     }
 
     public int getMinimumValue() {
