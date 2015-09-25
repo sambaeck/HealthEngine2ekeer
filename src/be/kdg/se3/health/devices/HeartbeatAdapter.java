@@ -28,22 +28,15 @@ public class HeartbeatAdapter implements Device {
     }
 
     @Override
-    public double read(String id){
-        try {
-            if (id.equals(HEARTBEAT_ID)) {
-                heartbeat = Double.parseDouble(heartbeatDriver.getHeartbeat() + "");
-                return heartbeat;
-            }
-            else if (id.equals(STRESSLEVEL_ID)) {
-                stressLevel = Double.parseDouble(heartbeatDriver.getStressLevel() + "");
-                return stressLevel;
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSignalException e) {
-            e.printStackTrace();
-        }
+    public double read(String id) throws DeviceException {
+       /* if (id.equals(HEARTBEAT_ID)) {
+            return Double.parseDouble(heartbeatDriver.getHeartbeat() + "");
 
+        }
+        else if (id.equals(STRESSLEVEL_ID)) {
+            return Double.parseDouble(heartbeatDriver.getStressLevel() + "");
+
+        }*/
         return 0;
     }
 }

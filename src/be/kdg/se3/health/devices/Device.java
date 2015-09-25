@@ -7,5 +7,5 @@ import java.util.Collection;
  */
 public interface Device {
     Collection<String> initialize();
-    double read(String id);
+    double read(String id) throws DeviceException;
 }
