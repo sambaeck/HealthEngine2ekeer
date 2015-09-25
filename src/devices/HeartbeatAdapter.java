@@ -3,7 +3,7 @@ package devices;
 /**
  * Created by OEM on 25/09/2015.
  */
-public class HeartbeatAdapter implements Devices {
+public class HeartbeatAdapter implements Device {
     private int heartbeat;
     private int stressLevel;
 
