@@ -1,4 +1,4 @@
-package devices;
+package be.kdg.se3.health.devices;
 
 /**
  * Created by OEM on 25/09/2015.

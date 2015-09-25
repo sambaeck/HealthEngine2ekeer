@@ -1,5 +1,4 @@
-import devices.GlucoseAdapter;
-import engine.Parameter;
+import be.kdg.se3.health.devices.GlucoseAdapter;
 
 /**
  * Created by OEM on 25/09/2015.

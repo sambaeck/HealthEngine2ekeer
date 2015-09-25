@@ -1,4 +1,4 @@
-package devices;
+package be.kdg.se3.health.devices;
 
 import java.util.Collection;
 
