@@ -4,6 +4,7 @@ import vendorX.drivers.NoSignalException;
 import vendorX.drivers.TypeXYZWatchDriver;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collection;
 
 /**
@@ -15,28 +16,36 @@ public class HeartbeatAdapter implements Device {
     private TypeXYZWatchDriver heartbeatDriver;
     private final String HEARTBEAT_ID = "heartbeat";
     private final String STRESSLEVEL_ID = "stresslevel";
+    private Collection<String> idList;
 
-    public HeartbeatAdapter(int heartbeat, int stressLevel) {
-        this.heartbeat = heartbeat;
-        this.stressLevel = stressLevel;
+    public HeartbeatAdapter() {
         heartbeatDriver= new TypeXYZWatchDriver();
+        idList = new ArrayList<String>();
+        idList.add(HEARTBEAT_ID);
+        idList.add(STRESSLEVEL_ID);
     }
 
     @Override
     public Collection<String> initialize() {
-        return null;
+        return idList;
     }
 
     @Override
     public double read(String id) throws DeviceException {
-       /* if (id.equals(HEARTBEAT_ID)) {
-            return Double.parseDouble(heartbeatDriver.getHeartbeat() + "");
+        try {
+            if (id.equals(HEARTBEAT_ID)) {
+                return Double.parseDouble(heartbeatDriver.getHeartbeat() + "");
 
+            }
+            else if (id.equals(STRESSLEVEL_ID)) {
+                return Double.parseDouble(heartbeatDriver.getStressLevel() + "");
+
+            }
+
+        } catch (Exception e) {
+            throw new DeviceException(e.getMessage(), e.getCause());
         }
-        else if (id.equals(STRESSLEVEL_ID)) {
-            return Double.parseDouble(heartbeatDriver.getStressLevel() + "");
 
-        }*/
         return 0;
     }
 }

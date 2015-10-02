@@ -2,38 +2,45 @@ package be.kdg.se3.health.devices;
 
 import vendorY.drv.GlcDrv;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * Created by OEM on 25/09/2015.
  */
 public class GlucoseAdapter implements Device {
-    private double glucoseLevel;
     private GlcDrv glucoseDriver;
+    private Collection<String> idList;
+    private final String GLUCOSE_ID = "glucoselevel";
 
 
     public GlucoseAdapter() {
+        idList = new ArrayList<String>();
         this.glucoseDriver = new GlcDrv();
         glucoseDriver.init();
-
-    }
-
-    @Override
-    public double read(String id) {
-        this.glucoseLevel = glucoseDriver.get_glcXYZ_value();
-        return this.glucoseLevel;
-    }
-
-    public void setGlucoseLevel(double glucoseLevel) {
-        this.glucoseLevel = glucoseLevel;
-    }
-
-    public double getGlucoseLevel() {
-        return glucoseLevel;
+        idList.add(GLUCOSE_ID);
     }
 
     @Override
     public Collection<String> initialize() {
-        return null;
+        return idList;
+    }
+
+    @Override
+    public double read(String id) throws DeviceException {
+        double glucoseLevel;
+        try {
+            if (id.equals(GLUCOSE_ID)) {
+                glucoseLevel= glucoseDriver.get_glcXYZ_value();
+                return glucoseLevel;
+            }
+            else {
+                return 0;
+            }
+
+        } catch (Exception e) {
+            throw new DeviceException(e.getMessage(), e.getCause());
+        }
     }
 }
